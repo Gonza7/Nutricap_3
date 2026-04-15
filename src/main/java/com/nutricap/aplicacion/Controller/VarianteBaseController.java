@@ -33,7 +33,7 @@ public class VarianteBaseController {
     }
 
     // Solo admin ve todas incluyendo las ocultas
-    @GetMapping("/todas")
+    @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
     public List<VarianteBaseResponse> listVarianteBase() {
         return varianteBaseService.listVarianteBase();
@@ -63,7 +63,7 @@ public class VarianteBaseController {
     }
 
     // Solo admin puede ocultar/mostrar
-    @PatchMapping("/{id}/visibilidad")
+    @PatchMapping("/{id}/visibility")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> toggleSoftDelete(@PathVariable Long id) {
         try {

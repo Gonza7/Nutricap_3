@@ -23,5 +23,4 @@ public class VarianteBaseRequest {
 
     private Map<String, Object> otrosNutrientes;
 
-    private Boolean softDelete = false;
 }

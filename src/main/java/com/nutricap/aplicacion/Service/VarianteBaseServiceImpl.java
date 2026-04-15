@@ -53,7 +53,6 @@ public class VarianteBaseServiceImpl implements VarianteBaseService {
         variante.setCalcio(request.getCalcio());
         variante.setFosforo(request.getFosforo());
         variante.setOtrosNutrientes(request.getOtrosNutrientes());
-        variante.setSoftDelete(request.getSoftDelete() != null ? request.getSoftDelete() : false);
         return variante;
     }
 
@@ -78,6 +77,7 @@ public class VarianteBaseServiceImpl implements VarianteBaseService {
     @Override
     public VarianteBaseResponse createVarianteBase(VarianteBaseRequest request) {
         VarianteBase variante = toEntity(request, new VarianteBase());
+        variante.setSoftDelete(false);
         return toResponse(varianteBaseRepository.save(variante));
     }
 
@@ -85,7 +85,9 @@ public class VarianteBaseServiceImpl implements VarianteBaseService {
     public VarianteBaseResponse updateVarianteBase(Long id, VarianteBaseRequest request) {
         VarianteBase variante = varianteBaseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Variante no encontrada"));
+        Boolean softDelete = variante.getSoftDelete();
         toEntity(request, variante);
+        variante.setSoftDelete(softDelete);
         return toResponse(varianteBaseRepository.save(variante));
     }
 
