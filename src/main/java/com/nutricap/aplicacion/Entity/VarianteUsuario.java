@@ -8,7 +8,12 @@ import java.util.Map;
 
 @Data
 @Entity
-@Table(name = "variantes_usuario")
+@Table(name = "variantes_usuario", indexes = {
+        @Index(name = "idx_variantes_usuario_uid", columnList = "usuario_id"),
+        @Index(name = "idx_variantes_usuario_tipo", columnList = "tipo_id"),
+        @Index(name = "idx_variantes_usuario_uid_soft", columnList = "usuario_id, soft_delete"),
+        @Index(name = "idx_variantes_usuario_uid_tipo_soft", columnList = "usuario_id, tipo_id, soft_delete")
+})
 public class VarianteUsuario {
 
     @Id

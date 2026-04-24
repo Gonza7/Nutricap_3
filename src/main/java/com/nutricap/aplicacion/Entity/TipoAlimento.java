@@ -5,7 +5,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tipos_alimento")
+@Table(name = "tipos_alimento", indexes = {
+        @Index(name = "idx_tipos_alimento_categoria", columnList = "categoria"),
+        @Index(name = "idx_tipos_alimento_nombre_categoria", columnList = "nombre, categoria")
+})
 public class TipoAlimento {
 
     @Id
